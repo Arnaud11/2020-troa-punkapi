@@ -30,18 +30,19 @@ a:hover {
 .head {
   z-index: 5;
   position: fixed;
+    display: flex;
+  flex-wrap: wrap;
   top: 0%;
-  margin-top: 2%;
   border-bottom: 2px solid #d8d8d8;
   background-color: #ffffff;
   font-family: 'Druk Wide';
-  height: 100px;
+  height: 80px;
   width: 100%;
 }
 .b-button {
   position: absolute;
   margin: auto;
-  top: 25%;
+  top: 20%;
   left: 5%;
   color: #000000;
   font-family: 'Druk Wide';
@@ -50,7 +51,7 @@ a:hover {
 .beer-button {
   position: absolute;
   margin: auto;
-  top: 25%;
+  top: 20%;
   right: 5%;
   color: #000000;
   font-family: 'Apple Color Emoji';

@@ -22,12 +22,12 @@ export default {
 .container {
   z-index: 100;
   position: fixed;
-  margin-bottom: 2%;
+
   bottom: 0%;
   border-top: 2px solid #d8d8d8;
   background-color: #ffffff;
   font-family: 'Druk Wide';
-  height: 100px;
+  height: 80px;
   width: 100%;
 }
 
@@ -35,7 +35,7 @@ export default {
   position: absolute;
   color: black;
   margin: auto;
-  top: 30%;
+  top: 20%;
   left: 15%;
 }
 
@@ -43,7 +43,7 @@ export default {
   position: absolute;
   margin: auto;
   color: black;
-  top: 30%;
+  top: 20%;
   right: 15%;
 }
 </style>

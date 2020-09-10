@@ -74,6 +74,18 @@
               </tr>
             </tbody>
           </table>
+          <table class="specifications">
+            <thead>
+              <tr>
+                <th class="text-left" scope="col">EBC / SRM</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ Beer.ebc }} / {{ Beer.srm }}</td>
+              </tr>
+            </tbody>
+          </table>
           <div class="title-informations">INGREDIENTS</div>
           <table class="ingredients">
             <thead>
