@@ -1,8 +1,6 @@
 <template>
   <div class="beer-table" v-if="Beer">
-    <div class="beer-table__preview">
-      <img :src="Beer.image_url" :alt="Beer.name" />
-    </div>
+    <!-- v-for="item in beers" :key="item.name" -->
     <div class="beer-table__details">
       <h1>
         {{ Beer.name }}
@@ -17,15 +15,11 @@
         SEE MORE
       </button>
     </div>
-    <transition name="fade" appear>
-      <div
-        class="modal-overlay"
-        v-if="showModal"
-        @click="showModal = false"
-      ></div>
-    </transition>
+    <div class="beer-table__preview">
+      <img :src="Beer.image_url" :alt="Beer.name" />
+    </div>
     <transition name="slide" appear>
-      <div class="modal" v-if="showModal">
+      <div class="modal hide fade" tabindex="-1" v-if="showModal">
         <button class="close-button" @click="showModal = false">
           X
         </button>
@@ -41,8 +35,72 @@
           <ul>
             <h1>{{ Beer.name }}</h1>
             <h4>{{ Beer.tagline }}</h4>
-            <h5>{{ Beer.description }}</h5>
+            <p>{{ Beer.description }}</p>
           </ul>
+          <div class="title-informations">SPECIFICATIONS</div>
+          <table class="specifications">
+            <thead>
+              <tr>
+                <th class="text-left" scope="col">First brewed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ Beer.first_brewed }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="specifications">
+            <thead>
+              <tr>
+                <th class="text-left" scope="col">ABV</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ Beer.abv }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="specifications">
+            <thead>
+              <tr>
+                <th class="text-left" scope="col">IBU</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ Beer.ibu }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="title-informations">INGREDIENTS</div>
+          <table class="ingredients">
+            <thead>
+              <tr>
+                <th class="text-left" scope="col">MALT</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td v-for="item in Beer.ingredients.malt" :key="item.name">
+                  {{ item.name }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="ingredients">
+            <thead>
+              <tr>
+                <th class="text-left" scope="col">YEAST</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ Beer.ingredients.yeast }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </transition>
@@ -59,7 +117,7 @@ export default {
     },
     hide() {
       this.$modal.hide("hello-world");
-    }
+    },
   },
 
   mounted() {
@@ -69,7 +127,7 @@ export default {
   data: function() {
     return {
       beers: [],
-      showModal: true
+      showModal: false,
     };
   },
   created: async function() {
@@ -85,9 +143,9 @@ export default {
   },
   computed: {
     Beer: function() {
-      return this.beers[50];
-    }
-  }
+      return this.beers[54];
+    },
+  },
 };
 </script>
 
@@ -125,16 +183,16 @@ export default {
   text-transform: uppercase;
   font-family: "Druk Wide";
   margin-block-start: 0em;
-  margin-block-end: 0em;
+  margin-block-end: 0.3em;
 }
 
 .beer-table__details h5 {
-  font-size: 12px;
+  font-size: 20px;
   letter-spacing: 0;
   text-transform: uppercase;
   font-family: "Helvetica";
   margin-block-start: 0em;
-  margin-block-end: 0em;
+  margin-block-end: 0.5em;
 }
 
 .close-button {
@@ -156,12 +214,14 @@ export default {
   background: none;
   cursor: pointer;
   display: inline-block;
-  width: 150px;
-  height: 40px;
+  width: 180px;
+  height: 49px;
   background-color: #000000;
   color: white;
   font-family: "Helvetica";
+  font-weight: 550;
   transition: color 0.5s ease;
+  font-size: 14px;
 }
 
 .button:hover {
@@ -215,14 +275,6 @@ export default {
   transform: scaleX(1);
 }
 
-.modal-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  background-color: rgb(255, 255, 255);
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0s;
@@ -241,68 +293,108 @@ export default {
   z-index: 3;
   width: 100%;
   height: 100%;
-  max-width: 2000px;
-  max-height: 2000px;
+  max-width: 4000px;
+  max-height: 4000px;
   background-color: #fff;
-  border-radius: 16px;
-  padding: 25px;
+  overflow-y: auto;
 }
 
 .left-elements {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10px 2em;
+  position: absolute;
+  left: 10%;
+  border-right: 2px solid;
+  color: #d8d8d8;
+  width: 40%;
 }
 
 .strong-name {
   position: absolute;
   left: 0%;
-  top: 30%;
+  top: 5%;
   max-width: 300px;
   text-align: center;
   font-family: "Druk Wide";
-  font-size: 150px;
+  font-size: 100px;
   color: #ffd512;
-  align-self: center;
+  line-height: 40px;
 }
 
 .modal-img {
-  position: absolute;
-  left: 10%;
-  top: 5%;
-  transform: scale(0.7, 0.7);
+  position: relative;
+  top: 0%;
+  left: 0%;
+  top: -320px;
+  transform: scale(0.6, 0.6);
   align-self: center;
 }
 
 .informations-panel {
   position: absolute;
   display: grid;
+  position: fixed;
+  top: 25%;
   left: 60%;
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .informations-panel h1 {
   font-family: "Druk Wide";
   text-align: left;
-  font-size: 60px;
+  font-size: 45px;
   color: #000000;
+  text-transform: uppercase;
+  line-height: 60px;
+  margin: auto;
   margin-block-start: 0em;
-  margin-block-end: 0em;
+  margin-block-end: 0.3em;
 }
 
 .informations-panel h4 {
-  font-family: "Druk Wide";
+  font-family: "Helvetica";
   text-align: left;
-  font-size:25px;
+  margin: auto;
+  font-size: 20px;
+  line-height: 30px;
   color: #000000;
   margin-block-start: 0em;
   margin-block-end: 0em;
 }
 
-.informations-panel h5 {
+.informations-panel p {
   text-align: left;
   color: #000000;
+  font-family: "Helvetica";
+  line-height: 22px;
+  font-size: 14px;
+}
 
-  font-size: 15px;
+.title-informations {
+  text-align: left;
+  color: #cccccc;
+  font-family: "Helvetica";
+  font-size: 20px;
+  margin-block-start: 0em;
+  margin-block-end: 1em;
+  font-weight: 550;
+}
+
+.informations-panel th {
+  text-align: left;
+  color: #000000;
+  font-family: "Helvetica";
+  font-size: 14px;
+}
+
+.informations-panel td {
+  text-align: right;
+  color: #000000;
+  font-family: "Helvetica";
+  font-size: 14px;
+}
+
+table {
+  border-block-start: 1px solid #d8d8d8;
+  background-color: #fff;
+  padding: 10px;
 }
 </style>

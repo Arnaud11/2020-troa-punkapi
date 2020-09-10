@@ -52,10 +52,4 @@ export default {
       format("truetype");
 }
 
-@font-face {
-  font-family: "Helvetica";
-  src: local("Helvetica"),
-    url(./fonts/@font-face/FontsFree-Net-HelveticaNeueBold.ttf)
-      format("truetype");
-}
 </style>

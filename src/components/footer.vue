@@ -24,7 +24,6 @@ export default {
   position: fixed;
   margin-bottom: 2%;
   bottom: 0%;
-  border-bottom: 2px solid #d8d8d8;
   border-top: 2px solid #d8d8d8;
   background-color: #ffffff;
   font-family: 'Druk Wide';
@@ -37,7 +36,7 @@ export default {
   color: black;
   margin: auto;
   top: 30%;
-  left: 5%;
+  left: 15%;
 }
 
 .credit {
@@ -45,6 +44,6 @@ export default {
   margin: auto;
   color: black;
   top: 30%;
-  right: 5%;
+  right: 15%;
 }
 </style>

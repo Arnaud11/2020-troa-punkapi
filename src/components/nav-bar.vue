@@ -33,7 +33,6 @@ a:hover {
   top: 0%;
   margin-top: 2%;
   border-bottom: 2px solid #d8d8d8;
-  border-top: 2px solid #d8d8d8;
   background-color: #ffffff;
   font-family: 'Druk Wide';
   height: 100px;
