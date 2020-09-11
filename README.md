@@ -1,3 +1,9 @@
+# How to test : 
+
+npm install
+
+npm start ou npm run dev
+
 # Test de recrutement - Développeur Front-End
 
 Cet exercice a pour but d'évaluer rapidement votre capacité de réflexion, vos compétences dans les langages HTML/CSS/JS et PHP, l'utilisation de packages manager (Composer, NPM...) et de de bundlers (Webpack, Gulp, Parcel ou autre).
