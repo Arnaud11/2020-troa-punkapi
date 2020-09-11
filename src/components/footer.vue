@@ -28,7 +28,8 @@ export default {
   background-color: #ffffff;
   font-family: 'Druk Wide';
   height: 80px;
-  width: 100%;
+  width: 80%;
+  left: 10%;
 }
 
 .cheers {

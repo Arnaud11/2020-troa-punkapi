@@ -1,22 +1,24 @@
 <template>
   <div class="beer-table" v-if="Beer">
     <!-- v-for="item in beers" :key="item.name" -->
-    <div class="beer-table__details">
-      <h1>
-        {{ Beer.name }}
-      </h1>
-      <h5>
-        {{ Beer.tagline }}
-      </h5>
-      <h5>
-        {{ Beer.first_brewed }}
-      </h5>
-      <button class="button hvr-sweep-to-left" @click="showModal = true">
-        SEE MORE
-      </button>
-    </div>
-    <div class="beer-table__preview">
-      <img :src="Beer.image_url" :alt="Beer.name" />
+    <div class="beer-table__details" v-for="item in beers" :key="item.name">
+      <div class="beer-table-text">
+        <h1>
+          {{ item.name }}
+        </h1>
+        <h5>
+          {{ item.tagline }}
+        </h5>
+        <h5>
+          {{ item.first_brewed }}
+        </h5>
+        <button class="button hvr-sweep-to-left" @click="showModal = true">
+          SEE MORE
+        </button>
+      </div>
+      <div class="beer-table__preview">
+        <img :src="item.image_url" :alt="item.name" />
+      </div>
     </div>
     <transition name="slide" appear>
       <div class="modal hide fade" tabindex="-1" v-if="showModal">
@@ -145,7 +147,7 @@ export default {
   created: async function() {
     try {
       var response = await fetch(
-        "https://api.punkapi.com/v2/beers?page=1&per_page=60"
+        "https://api.punkapi.com/v2/beers?page=1&per_page=30"
       );
       var data = await response.json();
       this.beers = data;
@@ -155,7 +157,7 @@ export default {
   },
   computed: {
     Beer: function() {
-      return this.beers[54];
+      return this.beers[29];
     },
   },
 };
@@ -164,32 +166,34 @@ export default {
 <style scoped>
 .beer-table {
   position: absolute;
-  top: 20%;
-  left: 15%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  top: 0%;
+  left: 17%;
   margin-block-start: 0em;
   margin-block-end: 0em;
 }
 
 .beer-table__preview {
+  position: relative;
   transform: scale(0.5, 0.5);
-  justify-content: right;
+  display: grid;
+    margin-block-end: 20em;
+
+  left: 100%;
   max-height: 100px;
-  margin-left: 5%;
-  margin-block-start: 0em;
-  margin-block-end: 0em;
 }
 
-.beer-table__details {
-  max-width: 300px;
+.beer-table-text {
+  position: relative;
+  max-width: 400px;
+  top: 60%;
   text-align: right;
   color: #000000;
   margin-block-start: 0em;
   margin-block-end: 0em;
 }
 
-.beer-table__details h1 {
+.beer-table-text h1 {
   font-size: 35px;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -198,7 +202,7 @@ export default {
   margin-block-end: 0.3em;
 }
 
-.beer-table__details h5 {
+.beer-table-text h5 {
   font-size: 20px;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -208,6 +212,7 @@ export default {
 }
 
 .close-button {
+  position: relative;
   appearance: none;
   outline: none;
   border: none;
@@ -215,7 +220,7 @@ export default {
   cursor: pointer;
   display: inline-block;
   font-size: 50px;
-  margin-top: 200px;
+  margin-top: 170px;
   z-index: 6;
 }
 
